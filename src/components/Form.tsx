@@ -12,6 +12,8 @@ const Form = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
+    setErrors(null);
+
     const data: User = {
       name,
       email,
@@ -23,9 +25,13 @@ const Form = () => {
     console.log(data, validateErrors);
 
     if (Object.keys(validateErrors).length > 0) {
-      alert("Tem erros!");
+      setErrors(validateErrors);
       return;
     }
+
+    setName("");
+    setEmail("");
+    setAgree(false);
 
     alert("Obrigado por cadastrar!");
   };
@@ -43,6 +49,9 @@ const Form = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
+        {errors?.name && (
+          <small className="text-xs text-red-500 mt-1">{errors?.name}</small>
+        )}
       </div>
 
       <div className="flex flex-col">
@@ -52,10 +61,13 @@ const Form = () => {
         <input
           type="email"
           placeholder="Insira seu email"
-          className="rounded-lg py-2 px-2 text-sm placeholder:text-sm placeholder: text-stone-400"
+          className="rounded-lg py-2 px-2 text-sm placeholder:text-sm placeholder:text-stone-400"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
+        {errors?.email && (
+          <small className="text-xs text-red-500 mt-1">{errors?.email}</small>
+        )}
       </div>
 
       <div className="flex flex-col">
@@ -71,6 +83,9 @@ const Form = () => {
           <label className="text-sm" htmlFor="agree">
             Concordo com os termos.
           </label>
+          {errors?.agree && (
+          <small className="text-xs text-red-500 mt-1">{errors?.agree}</small>
+        )}
         </div>
       </div>
 
