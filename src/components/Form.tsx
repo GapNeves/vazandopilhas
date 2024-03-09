@@ -1,28 +1,28 @@
 const Form = () => {
   return (
-    <form>
+    <form className="flex flex-col gap-3">
 
-      <div>
-        <label htmlFor="name">
+      <div className="flex flex-col">
+        <label className="text-sm" htmlFor="name">
           Nome
         </label>
-        <input type="text" placeholder="Digite o seu noem" />
+        <input type="text" placeholder="Digite o seu noem" className="rounded-lg py-2 px-2 text-sm placeholder:text-sm placeholder: text-stone-400"/>
       </div>
 
-      <div>
-        <label htmlFor="email">
+      <div className="flex flex-col">
+        <label className="text-sm" htmlFor="email">
           E-mail
         </label>
-        <input type="email" placeholder="Insira seu email"/>
+        <input type="email" placeholder="Insira seu email" className="rounded-lg py-2 px-2 text-sm placeholder:text-sm placeholder: text-stone-400"/>
       </div>
 
-      <div>
-        <a href="#">
+      <div className="flex flex-col">
+        <a href="#" className="text-xs underline mg-2">
           Leia os termos
         </a>
         <div>
           <input type="checkbox" />
-          <label htmlFor="agree">
+          <label className="text-sm" htmlFor="agree">
             Concordo com os termos.
           </label>
         </div>
