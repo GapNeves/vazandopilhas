@@ -1,33 +1,61 @@
-import { usestate, FormEvent, useState } from "react";
+import { useState, FormEvent } from "react";
 import { User } from "../types/User";
+import { validate } from "../utils/Validate";
 
 const Form = () => {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [agree, setsgree] = useState(false)
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [agree, setAgree] = useState(false);
 
-  const[erros, setErros] = useState<User | null>(null)
+  const [errors, setErrors] = useState<User | null>(null);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    alert("Test");
-  }
+
+    const data: User = {
+      name,
+      email,
+      agree,
+    };
+
+    const validateErrors = validate(data);
+
+    console.log(data, validateErrors);
+
+    if (Object.keys(validateErrors).length > 0) {
+      alert("Tem erros!");
+      return;
+    }
+
+    alert("Obrigado por cadastrar!");
+  };
 
   return (
     <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
-
       <div className="flex flex-col">
         <label className="text-sm" htmlFor="name">
           Nome
         </label>
-        <input type="text" placeholder="Digite o seu noem" className="rounded-lg py-2 px-2 text-sm placeholder:text-sm placeholder: text-stone-400"/>
+        <input
+          type="text"
+          placeholder="Digite o seu nome"
+          className="rounded-lg py-2 px-2 text-sm placeholder:text-sm placeholder:text-stone-400"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
       </div>
 
       <div className="flex flex-col">
         <label className="text-sm" htmlFor="email">
           E-mail
         </label>
-        <input type="email" placeholder="Insira seu email" className="rounded-lg py-2 px-2 text-sm placeholder:text-sm placeholder: text-stone-400"/>
+        <input
+          type="email"
+          placeholder="Insira seu email"
+          className="rounded-lg py-2 px-2 text-sm placeholder:text-sm placeholder: text-stone-400"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </div>
 
       <div className="flex flex-col">
@@ -35,17 +63,23 @@ const Form = () => {
           Leia os termos
         </a>
         <div className="flex gap-2 items-center">
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            checked={agree}
+            onChange={(e) => setAgree(e.target.checked)}
+          />
           <label className="text-sm" htmlFor="agree">
             Concordo com os termos.
           </label>
         </div>
       </div>
 
-      <button type="submit" className="bg-slate-600 hover:bag-slate-500 font-medium text-sm py-2 px-4 rounded-lg text-white">
+      <button
+        type="submit"
+        className="bg-slate-600 hover:bag-slate-500 font-medium text-sm py-2 px-4 rounded-lg text-white"
+      >
         Cadastrar
       </button>
-
     </form>
   );
 };
