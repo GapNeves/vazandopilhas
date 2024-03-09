@@ -20,7 +20,7 @@ const Form = () => {
         <a href="#" className="text-xs underline mg-2">
           Leia os termos
         </a>
-        <div>
+        <div className="flex gap-2 items-center">
           <input type="checkbox" />
           <label className="text-sm" htmlFor="agree">
             Concordo com os termos.
@@ -28,7 +28,7 @@ const Form = () => {
         </div>
       </div>
 
-      <button>
+      <button type="submit" className="bg-slate-600 hover:bag-slate-500 font-medium text-sm py-2 px-4 rounded-lg text-white">
         Cadastrar
       </button>
 
