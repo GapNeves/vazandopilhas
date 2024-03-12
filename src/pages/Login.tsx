@@ -1,12 +1,10 @@
-import Form from "../components/Form";
+import FormLogin from "../components/FormLogin";
 
 const Login = () => {
   return (
     <div>
-      <h1 className="font-bold text-[2rem] text-white">Cadastre-se</h1>
-      <p className="text-white">Cadastre-se para tirar suas duvidas.</p>
       <div className="w-96 mt-4 bg-stone-200 px-4 py-5 rounded-lg">
-        <Form />
+        <FormLogin />
       </div>
     </div>
   );

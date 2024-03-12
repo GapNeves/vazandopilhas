@@ -1,11 +1,11 @@
-import { User } from "../types/User";
+import { Cadastro } from "../types/Cadastro";
 
 type Error = {
     [key: string]: string;
 };
 
 
-export const validate = (date: User) => {
+export const validate = (date: Cadastro) => {
     const errors: Error = {};
     const emailRegex: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -22,6 +22,12 @@ export const validate = (date: User) => {
     }
     if (date.agree === false) {
         errors["agree"] = "É necessário concordar com os termos";
+    }
+    if (!date.senha) {
+        errors["senha"] = "Senha obrigatoria";
+    }
+    if (typeof date.senha !== "undefined" && date.senha.length < 6) {
+        errors["senha"] = "Senha deve ter no minimo 6(seis) caracteres"
     }
     return errors;
 }
