@@ -1,22 +1,24 @@
 import { useState, FormEvent } from "react";
-import { User } from "../types/User";
-import { validate } from "../utils/Validate";
+import { Cadastro } from "../types/Cadastro";
+import { validate } from "../utils/ValidateCadastro";
 
-const Form = () => {
+const FormCad = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
   const [agree, setAgree] = useState(false);
 
-  const [errors, setErrors] = useState<User | null>(null);
+  const [errors, setErrors] = useState<Cadastro | null>(null);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     setErrors(null);
 
-    const data: User = {
+    const data: Cadastro = {
       name,
       email,
+      senha,
       agree,
     };
 
@@ -31,6 +33,7 @@ const Form = () => {
 
     setName("");
     setEmail("");
+    setSenha("");
     setAgree(false);
 
     alert("Obrigado por cadastrar!");
@@ -39,6 +42,9 @@ const Form = () => {
   return (
     <form className="flex flex-col gap-3" onSubmit={handleSubmit}>
       <div className="flex flex-col">
+      <h1 className="font-bold text-[2rem] text-slate-600 flex flex-col items-center">
+          Cadastre-se
+        </h1>
         <label className="text-sm" htmlFor="name">
           Nome
         </label>
@@ -69,6 +75,22 @@ const Form = () => {
           <small className="text-xs text-red-500 mt-1">{errors?.email}</small>
         )}
       </div>
+      
+      <div className="flex flex-col">
+        <label className="text-sm" htmlFor="senha">
+          Senha
+        </label>
+        <input
+          type="password"
+          placeholder="Insira sua senha"
+          className="rounded-lg py-2 px-2 text-sm placeholder:text-sm placeholder:text-stone-400"
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
+        />
+        {errors?.senha && (
+          <small className="text-xs text-red-500 mt-1">{errors?.senha}</small>
+        )}
+      </div>
 
       <div className="flex flex-col">
         <a href="#" className="text-xs underline mg-2">
@@ -84,8 +106,8 @@ const Form = () => {
             Concordo com os termos.
           </label>
           {errors?.agree && (
-          <small className="text-xs text-red-500 mt-1">{errors?.agree}</small>
-        )}
+            <small className="text-xs text-red-500 mt-1">{errors?.agree}</small>
+          )}
         </div>
       </div>
 
@@ -99,4 +121,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default FormCad;
