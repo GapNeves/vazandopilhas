@@ -24,8 +24,6 @@ const FormCad = () => {
 
     const validateErrors = validate(data);
 
-    console.log(data, validateErrors);
-
     if (Object.keys(validateErrors).length > 0) {
       setErrors(validateErrors);
       return;

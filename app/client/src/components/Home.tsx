@@ -5,7 +5,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-96 mt-4 bg-slate-300 px-4 py-5 rounded-lg flex flex-col items-center justify-center">
+    <div className="w-100 mt-4 bg-slate-300 px-4 py-5 rounded-lg flex flex-col items-center justify-center">
         <h1 className="font-bold text-[2rem] text-slate-900">Vazando Pilhas🔋</h1>
         <div className="w-full flex flex-lin justify-center">
           <button className="m-0.5 bg-slate-800 hover:bag-slate-500 font-medium text-sm py-2 px-4 rounded-lg text-white" onClick={() => {
