@@ -13,9 +13,8 @@ RUN npm install
 COPY . .
 
 # Sinalize que aplicação expõe a porta 3001
-EXPOSE 3000
+EXPOSE 5173
 
 # Configurar os comandos para iniciar a aplicação de acordo com as boas práticas
 # Dica: Leia a seção Docker e Docker-compose no README para mais informações
-ENTRYPOINT [ "npm", "run" ]
-CMD [ "start" ]
+ENTRYPOINT [ "npm", "run", "dev" ]
